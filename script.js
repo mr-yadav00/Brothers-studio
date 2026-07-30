@@ -1,5 +1,35 @@
 // FAQ Accordion functionality
 document.addEventListener('DOMContentLoaded', () => {
+    // Mobile Menu Toggle
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    if (mobileMenuToggle && navLinks) {
+        const hamburgerIcon = mobileMenuToggle.querySelector('.hamburger-icon');
+        const closeIcon = mobileMenuToggle.querySelector('.close-icon');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const isOpen = navLinks.classList.contains('active');
+            
+            if (hamburgerIcon && closeIcon) {
+                hamburgerIcon.style.display = isOpen ? 'none' : 'block';
+                closeIcon.style.display = isOpen ? 'block' : 'none';
+            }
+        });
+
+        // Close menu when clicking link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                if (hamburgerIcon && closeIcon) {
+                    hamburgerIcon.style.display = 'block';
+                    closeIcon.style.display = 'none';
+                }
+            });
+        });
+    }
+
     const faqItems = document.querySelectorAll('.faq-item');
 
     faqItems.forEach(item => {

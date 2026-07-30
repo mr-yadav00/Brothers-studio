@@ -111,25 +111,32 @@ h1, h2, h3, .logo-text, .main-logo {
     border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
-.nav-brand {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
+.nav-brand-text {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    color: var(--text-light);
+    transition: color 0.3s ease;
 }
 
-.nav-logo-img {
-    height: 46px;
-    width: 46px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 1.5px solid rgba(211, 168, 99, 0.4);
-    box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
-    transition: transform 0.3s ease, border-color 0.3s ease;
+.nav-brand-text:hover {
+    color: var(--accent-gold);
 }
 
-.nav-logo-img:hover {
-    transform: scale(1.06);
-    border-color: var(--accent-gold);
+.mobile-menu-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    color: var(--text-light);
+    cursor: pointer;
+    padding: 6px;
+    z-index: 1001;
+    transition: color 0.3s ease;
+}
+
+.mobile-menu-toggle:hover {
+    color: var(--accent-gold);
 }
 
 .nav-links {
@@ -682,8 +689,37 @@ select option {
     .navbar {
         padding: 15px 20px;
     }
+    .mobile-menu-toggle {
+        display: block;
+    }
     .nav-links {
-        display: none; /* simple mobile hide for now */
+        position: fixed;
+        top: 65px;
+        left: 0;
+        right: 0;
+        background: rgba(15, 13, 11, 0.98);
+        backdrop-filter: blur(15px);
+        flex-direction: column;
+        padding: 30px 20px;
+        gap: 20px;
+        border-bottom: 1px solid var(--border-color);
+        transform: translateY(-150%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.35s ease-in-out;
+        z-index: 999;
+    }
+    .nav-links.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+    .nav-links .nav-btn {
+        width: 100%;
+        max-width: 280px;
+    }
+    .hero {
+        background-attachment: scroll;
     }
     .hero .title {
         font-size: 3.5rem;
@@ -696,9 +732,5 @@ select option {
     }
     .form-row {
         grid-template-columns: 1fr;
-    }
-    .hero-logo-img {
-        width: 170px;
-        height: 170px;
     }
 }
