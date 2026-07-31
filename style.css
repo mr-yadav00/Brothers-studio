@@ -751,6 +751,116 @@ select option {
     text-decoration: underline;
 }
 
+/* Instagram Showcase Section */
+.insta-header-icon {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 12px;
+}
+
+.insta-desc {
+    color: var(--text-dim);
+    margin-top: 12px;
+    font-size: 0.95rem;
+}
+
+.insta-btn-wrap {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.btn-insta {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    color: #fff;
+    border: none;
+    font-weight: 500;
+    box-shadow: 0 4px 15px rgba(220, 39, 67, 0.35);
+}
+
+.btn-insta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 22px rgba(220, 39, 67, 0.55);
+    color: #fff;
+}
+
+.insta-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-top: 30px;
+}
+
+.insta-card {
+    background: linear-gradient(145deg, #1c1815 0%, #15120f 100%);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 24px 20px;
+    transition: var(--transition);
+    display: block;
+    position: relative;
+    overflow: hidden;
+}
+
+.insta-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, #f09433, #dc2743, #bc1888);
+    opacity: 0.7;
+    transition: var(--transition);
+}
+
+.insta-card:hover {
+    border-color: rgba(220, 39, 67, 0.5);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.insta-card:hover::before {
+    opacity: 1;
+    width: 6px;
+}
+
+.insta-tag {
+    font-size: 0.75rem;
+    letter-spacing: 1.5px;
+    color: var(--accent-gold);
+    text-transform: uppercase;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.insta-card h4 {
+    font-size: 1.2rem;
+    color: var(--text-light);
+    margin-bottom: 6px;
+    font-family: var(--font-heading);
+}
+
+.insta-card p {
+    font-size: 0.88rem;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+}
+
+.insta-link-text {
+    font-size: 0.85rem;
+    color: var(--accent-gold);
+    font-weight: 500;
+    transition: var(--transition);
+    display: inline-block;
+}
+
+.insta-card:hover .insta-link-text {
+    color: #e6683c;
+    transform: translateX(3px);
+}
+
 /* Progressive Enhancement - Tablet Breakpoint (min-width: 768px) */
 @media (min-width: 768px) {
     section {
@@ -864,6 +974,11 @@ select option {
     .form-row {
         grid-template-columns: 1fr 1fr;
     }
+
+    .insta-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
 }
 
 /* Progressive Enhancement - Desktop Breakpoint (min-width: 1024px) */
@@ -920,6 +1035,10 @@ select option {
 
     .booking-form-card {
         padding: 40px;
+    }
+
+    .insta-grid {
+        grid-template-columns: repeat(4, 1fr);
     }
 
     .footer {
