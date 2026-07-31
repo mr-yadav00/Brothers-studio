@@ -623,6 +623,22 @@ select option {
     word-break: break-word;
 }
 
+.footer-insta {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    margin-top: 15px;
+}
+
+.footer-insta a {
+    color: var(--accent-gold);
+    transition: var(--transition);
+}
+
+.footer-insta a:hover {
+    color: var(--accent-gold-hover);
+    text-decoration: underline;
+}
+
 /* Progressive Enhancement - Tablet Breakpoint (min-width: 768px) */
 @media (min-width: 768px) {
     section {
