@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // FAQ Accordion
     const faqItems = document.querySelectorAll('.faq-item');
 
     faqItems.forEach(item => {
@@ -22,6 +23,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Set Minimum Date on Date Picker to Today
+    const dateInput = document.getElementById('date');
+    if (dateInput) {
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.min = today;
+    }
+
+    // Event Chips Selection Logic
+    const chipBtns = document.querySelectorAll('.chip-btn');
+    chipBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            btn.classList.toggle('selected');
+        });
+    });
+
     // Form Submission for WhatsApp
     const form = document.getElementById('whatsappForm');
     
@@ -36,6 +52,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const packageSelected = document.getElementById('package').value;
             const details = document.getElementById('details').value.trim();
             
+            const selectedChips = Array.from(document.querySelectorAll('.chip-btn.selected'))
+                .map(c => c.getAttribute('data-value'));
+            
             if (!name || !phone || !date || !location) {
                 alert("Please fill in all required fields.");
                 return;
@@ -47,6 +66,11 @@ document.addEventListener('DOMContentLoaded', () => {
             message += `*Phone:* ${phone}\n`;
             message += `*Event Date:* ${date}\n`;
             message += `*Location:* ${location}\n`;
+            
+            if (selectedChips.length > 0) {
+                message += `*Functions:* ${selectedChips.join(', ')}\n`;
+            }
+            
             message += `*Package:* ${packageSelected}\n`;
             
             if (details) {
@@ -56,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Encode for URL
             const encodedMessage = encodeURIComponent(message);
             
-            // Phone number specified in the screenshot
+            // Phone number specified for studio
             const targetPhone = "917008450368";
             
             // Open WhatsApp
@@ -69,7 +93,6 @@ document.addEventListener('DOMContentLoaded', () => {
 function selectPackage(packageName) {
     const packageSelect = document.getElementById('package');
     if (packageSelect) {
-        // First make sure the option exists, or just set the value if exact match
         Array.from(packageSelect.options).forEach(option => {
             if (option.value === packageName) {
                 packageSelect.value = packageName;

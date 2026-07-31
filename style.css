@@ -534,10 +534,61 @@ section {
 }
 
 .booking-form-card {
-    background-color: var(--bg-card);
-    padding: 24px 20px;
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
+    background: linear-gradient(145deg, #1c1815 0%, #15120f 100%);
+    padding: 30px 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(211, 168, 99, 0.25);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.form-header {
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.form-header h3 {
+    font-size: 1.4rem;
+    color: var(--text-light);
+    margin-bottom: 4px;
+}
+
+.form-sub-header {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+}
+
+.info-card.highlight-card {
+    background: linear-gradient(135deg, rgba(211, 168, 99, 0.08) 0%, rgba(28, 24, 21, 0.9) 100%);
+    border-color: rgba(211, 168, 99, 0.4);
+}
+
+.info-badge {
+    align-self: flex-start;
+    background-color: rgba(211, 168, 99, 0.2);
+    color: var(--accent-gold);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 12px;
+    border: 1px solid rgba(211, 168, 99, 0.4);
+}
+
+.quick-call-btns {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.btn-sm {
+    padding: 8px 16px;
+    font-size: 0.825rem;
+    min-height: 38px;
+}
+
+.accent-text {
+    color: var(--accent-gold);
 }
 
 .form-row {
@@ -551,19 +602,26 @@ section {
 }
 
 .form-group label {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 6px;
     margin-bottom: 8px;
     font-size: 0.85rem;
-    color: var(--text-light);
+    color: var(--accent-gold);
+    font-weight: 500;
+}
+
+.form-group label svg {
+    color: var(--accent-gold);
 }
 
 input, select, textarea {
     width: 100%;
     padding: 14px 15px;
-    min-height: 44px;
-    background-color: transparent;
+    min-height: 46px;
+    background-color: rgba(15, 13, 11, 0.6);
     border: 1px solid var(--border-color);
-    border-radius: 4px;
+    border-radius: 6px;
     color: var(--text-light);
     font-family: var(--font-body);
     font-size: 0.95rem;
@@ -573,12 +631,56 @@ input, select, textarea {
 input:focus, select:focus, textarea:focus {
     outline: none;
     border-color: var(--accent-gold);
+    box-shadow: 0 0 12px rgba(211, 168, 99, 0.2);
+    background-color: rgba(15, 13, 11, 0.9);
+}
+
+/* Event Chips */
+.event-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.chip-btn {
+    background-color: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-color);
+    color: var(--text-dim);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.chip-btn:hover {
+    border-color: var(--accent-gold);
+    color: var(--text-light);
+    background-color: rgba(211, 168, 99, 0.1);
+}
+
+.chip-btn.selected {
+    background-color: var(--accent-gold);
+    color: var(--bg-dark);
+    border-color: var(--accent-gold);
+    font-weight: 600;
 }
 
 /* Fix select option color */
 select option {
     background-color: var(--bg-card);
     color: var(--text-light);
+}
+
+.btn-wa-submit {
+    box-shadow: 0 4px 20px rgba(211, 168, 99, 0.25);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-wa-submit:hover {
+    box-shadow: 0 6px 25px rgba(211, 168, 99, 0.4);
 }
 
 .form-footer {
