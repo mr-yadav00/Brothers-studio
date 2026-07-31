@@ -30,11 +30,25 @@ document.addEventListener('DOMContentLoaded', () => {
         dateInput.min = today;
     }
 
-    // Event Chips Selection Logic
+    // Event Chips Selection & Custom Event Box Logic
     const chipBtns = document.querySelectorAll('.chip-btn');
+    const otherChipBtn = document.getElementById('otherChipBtn');
+    const customEventWrap = document.getElementById('customEventWrap');
+    const customEventInput = document.getElementById('customEventInput');
+
     chipBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             btn.classList.toggle('selected');
+            
+            if (btn === otherChipBtn && customEventWrap) {
+                if (otherChipBtn.classList.contains('selected')) {
+                    customEventWrap.style.display = 'block';
+                    if (customEventInput) customEventInput.focus();
+                } else {
+                    customEventWrap.style.display = 'none';
+                    if (customEventInput) customEventInput.value = '';
+                }
+            }
         });
     });
 
@@ -52,13 +66,21 @@ document.addEventListener('DOMContentLoaded', () => {
             const packageSelected = document.getElementById('package').value;
             const details = document.getElementById('details').value.trim();
             
-            const selectedChips = Array.from(document.querySelectorAll('.chip-btn.selected'))
-                .map(c => c.getAttribute('data-value'));
-            
             if (!name || !phone || !date || !location) {
                 alert("Please fill in all required fields.");
                 return;
             }
+            
+            const selectedChips = Array.from(document.querySelectorAll('.chip-btn.selected'))
+                .map(c => c.getAttribute('data-value'));
+            
+            const customEventText = customEventInput ? customEventInput.value.trim() : '';
+            const finalFunctions = selectedChips.map(val => {
+                if (val === 'Other') {
+                    return customEventText ? `Custom: ${customEventText}` : 'Custom Event';
+                }
+                return val;
+            });
             
             // Format WhatsApp Message
             let message = `*New Booking Enquiry - Brother's Studio*\n\n`;
@@ -67,8 +89,8 @@ document.addEventListener('DOMContentLoaded', () => {
             message += `*Event Date:* ${date}\n`;
             message += `*Location:* ${location}\n`;
             
-            if (selectedChips.length > 0) {
-                message += `*Functions:* ${selectedChips.join(', ')}\n`;
+            if (finalFunctions.length > 0) {
+                message += `*Functions:* ${finalFunctions.join(', ')}\n`;
             }
             
             message += `*Package:* ${packageSelected}\n`;
